@@ -1,7 +1,7 @@
 revolte:
   version: '1.0'
-  project: Shield-academy
-  appName: helocarrier-be
+  project: Facebook
+  appName: Meta-BE
   env:
     staging:
       branch: main
