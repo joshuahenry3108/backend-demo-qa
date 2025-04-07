@@ -1,7 +1,7 @@
 revolte:
   version: '1.0'
-  project: Facebook
-  appName: Meta-BE
+  project: facebook1
+  appName: Meta-BE1
   env:
     staging:
       branch: main
