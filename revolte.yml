@@ -1,7 +1,7 @@
 revolte:
   version: '1.0'
-  project: facebook1
-  appName: Meta-BE1
+  project: heroku2
+  appName: payment-app-be
   env:
     staging:
       branch: main
