@@ -1,9 +1,9 @@
 revolte:
   version: '1.0'
-  project: heroku2
-  appName: payment-app-be
+  project: PSG
+  appName: back-end
   env:
-    staging:
+    qa:
       branch: main
       services:
         rid_1:
