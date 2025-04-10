@@ -1,7 +1,7 @@
 revolte:
   version: '1.0'
-  project: PSG
-  appName: back-end
+  project: Ares
+  appName: be-dotnet-mysql
   env:
     qa:
       branch: main
