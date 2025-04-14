@@ -3,7 +3,7 @@ revolte:
   project: Armageddon
   appName: time-sync
   env:
-    qa:
+    staging:
       branch: main
       services:
         rid_1:
