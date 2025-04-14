@@ -1,7 +1,7 @@
 revolte:
   version: '1.0'
-  project: Ares
-  appName: be-dotnet-mysql
+  project: Armageddon
+  appName: time-sync
   env:
     qa:
       branch: main
