@@ -30,13 +30,4 @@ revolte:
             cpu: 2
             memory: 2
             storage: 30
-            engine: postgres
-        rid_3:
-          name: payment-service-db2
-          type: DATABASE
-          specifications:
-            cpu: 2
-            memory: 2
-            storage: 30
-            engine: postgres
-               
+            engine: postgress
