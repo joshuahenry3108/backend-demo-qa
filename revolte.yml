@@ -1,7 +1,7 @@
 revolte:
   version: '1.0'
-  project: Armageddon
-  appName: time-sync
+  project: NewProject
+  appName: NewAPP-backend
   env:
     staging:
       branch: main
