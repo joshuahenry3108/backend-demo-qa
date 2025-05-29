@@ -1,7 +1,7 @@
 revolte:
   version: '1.0'
-  project: Act Ltd
-  appName: act-be
+  project: dont delete
+  appName: nginx
   env:
     production:
       branch: main
