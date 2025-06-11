@@ -1,7 +1,7 @@
 revolte:
   version: '1.0'
-  project: Azure-Proj
-  appName: test-app
+  project: AccuSure
+  appName: BE APP
   env:
     production:
       branch: main
@@ -38,7 +38,7 @@ revolte:
             storage: 50
             engine: postgres
     staging:
-      branch: qatest
+      branch: staging
       services:
         rid_1:
           name: web-service
@@ -58,6 +58,7 @@ revolte:
               DATABASE_USERNAME: '#{db.dbUsername}'
               DATABASE_PASSWORD: '#{db.dbPassword}'
               DATABASE_NAME: '#{db.dbName}'
+              DATABASE_CONNECTION_STRING: '#{db.dbConnectionString}'
         rid_2:
           name: db
           type: DATABASE
@@ -87,6 +88,7 @@ revolte:
               DATABASE_USERNAME: '#{db.dbUsername}'
               DATABASE_PASSWORD: '#{db.dbPassword}'
               DATABASE_NAME: '#{db.dbName}'
+              DATABASE_CONNECTION_STRING: '#{db.dbConnectionString}'
         rid_2:
           name: db
           type: DATABASE
@@ -115,6 +117,7 @@ revolte:
               DATABASE_USERNAME: '#{db.dbUsername}'
               DATABASE_PASSWORD: '#{db.dbPassword}'
               DATABASE_NAME: '#{db.dbName}'
+              DATABASE_CONNECTION_STRING: '#{db.dbConnectionString}'
         rid_2:
           name: db
           type: DATABASE
