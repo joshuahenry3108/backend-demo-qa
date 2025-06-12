@@ -112,14 +112,14 @@ revolte:
             port: 8080
             variables:
               BASE_URL: /api/v1
-              DATABASE_URL: '#{skipDeploy.dbUrl}'
-              DATABASE_PORT: '#{skipDeploy.dbPort}'
-              DATABASE_USERNAME: '#{skipDeploy.dbUsername}'
-              DATABASE_PASSWORD: '#{skipDeploy.dbPassword}'
-              DATABASE_NAME: '#{skipDeploy.dbName}'
-              DATABASE_CONNECTION_STRING: '#{skipDeploy.dbConnectionString}'
+              DATABASE_URL: '#{db.dbUrl}'
+              DATABASE_PORT: '#{db.dbPort}'
+              DATABASE_USERNAME: '#{db.dbUsername}'
+              DATABASE_PASSWORD: '#{db.dbPassword}'
+              DATABASE_NAME: '#{db.dbName}'
+              DATABASE_CONNECTION_STRING: '#{db.dbConnectionString}'
         rid_2:
-          name: skipDeploy
+          name: db
           type: DATABASE
           specifications:
             cpu: 2
