@@ -14,7 +14,7 @@ revolte:
           specifications:
             cpu: 2
             memory: 2
-            storage: 16
+            storage: 30
             autoScaling:
               replica:
                 min: 1
@@ -24,13 +24,13 @@ revolte:
             port: 8080
             variables:
               BASE_URL: /api/v1
-              DATABASE_URL: '#{db1.dbUrl}'
-              DATABASE_PORT: '#{db1.dbPort}'
-              DATABASE_USERNAME: '#{db1.dbUsername}'
-              DATABASE_PASSWORD: '#{db1.dbPassword}'
-              DATABASE_NAME: '#{db1.dbName}'
+              DATABASE_URL: '#{db22.dbUrl}'
+              DATABASE_PORT: '#{db22.dbPort}'
+              DATABASE_USERNAME: '#{db22.dbUsername}'
+              DATABASE_PASSWORD: '#{db22.dbPassword}'
+              DATABASE_NAME: '#{db22.dbName}'
         rid_2:
-          name: db1
+          name: db22
           type: DATABASE
           specifications:
             cpu: 2
@@ -47,20 +47,20 @@ revolte:
           specifications:
             cpu: 2
             memory: 2
-            storage: 50
+            storage: 30
           properties:
             health: /health
             port: 8080
             variables:
               BASE_URL: /api/v1
-              DATABASE_URL: '#{db3.dbUrl}'
-              DATABASE_PORT: '#{db3.dbPort}'
-              DATABASE_USERNAME: '#{db3.dbUsername}'
-              DATABASE_PASSWORD: '#{db3.dbPassword}'
-              DATABASE_NAME: '#{db3.dbName}'
-              DATABASE_CONNECTION_STRING: '#{db3.dbConnectionString}'
+              DATABASE_URL: '#{db45.dbUrl}'
+              DATABASE_PORT: '#{db45.dbPort}'
+              DATABASE_USERNAME: '#{db45.dbUsername}'
+              DATABASE_PASSWORD: '#{db45.dbPassword}'
+              DATABASE_NAME: '#{db45.dbName}'
+              DATABASE_CONNECTION_STRING: '#{db45.dbConnectionString}'
         rid_2:
-          name: db3
+          name: db45
           type: DATABASE
           specifications:
             cpu: 2
