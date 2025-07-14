@@ -1,16 +1,15 @@
 revolte:
   version: '1.0'
-  project: Telegram
-  appName: chatbox
+  project: plus proj
+  appName: plus-app
   env:
     production:
       branch: production
       services:
         rid_1:
-          name: webservice
+          name: web-service
           type: WEB_SERVICE
           entryPoint: index.js
-          domain: api.revolte.com
           specifications:
             cpu: 2
             memory: 2
@@ -28,3 +27,12 @@ revolte:
               DATABASE_PORT: '#{db.dbPort}'
               DATABASE_USERNAME: '#{db.dbUsername}'
               DATABASE_PASSWORD: '#{db.dbPassword}'
+              DATABASE_NAME: '#{db.dbName}'
+        rid_2:
+          name: db
+          type: DATABASE
+          specifications:
+            engine: postgres
+            cpu: 2
+            memory: 4
+            storage: 20
