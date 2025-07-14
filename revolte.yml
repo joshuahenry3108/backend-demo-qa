@@ -3,7 +3,7 @@ revolte:
   project: RevProj
   appName: be-ppp
   env:
-    qa:
+    staging:
       branch: production
       services:
         rid_1:
