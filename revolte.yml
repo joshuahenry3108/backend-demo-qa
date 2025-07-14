@@ -1,9 +1,9 @@
 revolte:
   version: '1.0'
-  project: plus proj
-  appName: plus-app
+  project: RevProj
+  appName: be-ppp
   env:
-    production:
+    qa:
       branch: production
       services:
         rid_1:
