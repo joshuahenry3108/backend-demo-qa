@@ -1,10 +1,9 @@
 revolte:
   version: '1.0'
-  project: Untitled Project
-  appName: test
+  project: Lenova
+  appName: another-apl
   env:
-    qa:
-      branch: qa
+    preview:
       services:
         rid_1:
           name: web-service
