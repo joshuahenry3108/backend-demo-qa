@@ -28,6 +28,11 @@ revolte:
               DATABASE_USERNAME: '#{db.dbUsername}'
               DATABASE_PASSWORD: '#{db.dbPassword}'
               DATABASE_NAME: '#{db.dbName}'
+          insights:
+            cpu:
+              - cpu_time_idle
+              - cpu_time_system
+              - cpu_time_user
         rid_2:
           name: db
           type: DATABASE
