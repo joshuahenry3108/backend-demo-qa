@@ -91,17 +91,15 @@ revolte:
           insights:
             cpu:
               - cpu_time_idle
+              - cpu_time_system
               - cpu_time_user
-              - cpu_time_user
-            disk:
-              - disk_free
-              - disk_used
-              - disk_total
-            swap:
-              - swap_used
             mem:
               - mem_free
               - mem_total
+            disk:
+              - disk_free
+            swap:
+              - swap_used
         rid_2:
           name: db
           type: DATABASE
