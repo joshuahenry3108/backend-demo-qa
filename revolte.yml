@@ -32,6 +32,10 @@ revolte:
             mem:
               - mem_free
               - mem_total
+            disk:
+              - disk_free
+            swap:
+              - swap_free
         rid_2:
           name: db
           type: DATABASE
