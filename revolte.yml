@@ -1,10 +1,9 @@
 revolte:
   version: '1.0'
   project: CGI Pro
-  appName: backend-demo
+  appName: backend-app
   env:
-    production:
-      branch: qatest
+    preview:
       services:
         rid_1:
           name: web-service
@@ -14,10 +13,6 @@ revolte:
             cpu: 2
             memory: 2
             storage: 30
-            autoScaling:
-              replica:
-                min: 1
-                max: 3
           properties:
             health: /health
             port: 8080
@@ -28,19 +23,20 @@ revolte:
               DATABASE_USERNAME: '#{db.dbUsername}'
               DATABASE_PASSWORD: '#{db.dbPassword}'
               DATABASE_NAME: '#{db.dbName}'
+              DATABASE_CONNECTION_STRING: '#{db.dbConnectionString}'
           insights:
             cpu:
               - cpu_time_idle
               - cpu_time_system
               - cpu_time_user
             mem:
-              - mem_total
               - mem_free
+              - mem_total
         rid_2:
           name: db
           type: DATABASE
           specifications:
             engine: postgres
             cpu: 2
-            memory: 4
+            memory: 1
             storage: 20
