@@ -36,6 +36,7 @@ revolte:
               - disk_free
             swap:
               - swap_free
+              - swap_used
         rid_2:
           name: db
           type: DATABASE
