@@ -33,6 +33,9 @@ revolte:
               - cpu_time_idle
               - cpu_time_system
               - cpu_time_user
+            mem:
+              - mem_total
+              - mem_free
         rid_2:
           name: db
           type: DATABASE
