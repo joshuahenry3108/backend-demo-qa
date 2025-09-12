@@ -1,123 +1,123 @@
 revolte:
   version: '1.0'
-  project: Dell Project
-  appName: backend-qa
+  project: Untitled Project
+  appName: Test app 2
+  config:
+    codeReview:
+      summarize: true
+      suggestFixes: true
+      commentStyle: Balanced
+    codeQuality:
+      codeStyle:
+        rules:
+          javascript/arrayCallbackReturn: warn
+          javascript/constructorSuper: warn
   env:
-    production:
-      branch: main
+    staging:
+      branch: qatest
+      codeReview: true
+      codeQuality: true
       services:
         rid_1:
-          name: web-service
           type: WEB_SERVICE
+          name: web_service
           entryPoint: index.js
+          properties:
+            health: /health
+            port: 8080
+            variables:
+              BASE_URL: /api/v1
+              DATABASE_URL: '#{db.dbUrl}'
+              DATABASE_PORT: '#{db.dbPort}'
+              DATABASE_USERNAME: '#{db.dbUsername}'
+              DATABASE_PASSWORD: '#{db.dbPassword}'
+              DATABASE_NAME: '#{db.dbName}'
           specifications:
             cpu: 2
-            memory: 2
+            memory: 1
+            storage: 30
+        rid_2:
+          type: DATABASE
+          name: db
+          specifications:
+            cpu: 2
+            memory: 1
+            storage: 30
+            engine: postgres
+    qa:
+      branch: production
+      codeReview: true
+      codeQuality: true
+      services:
+        rid_1:
+          type: WEB_SERVICE
+          name: web_service
+          entryPoint: index.js
+          properties:
+            health: /health
+            port: 8080
+            variables:
+              BASE_URL: /api/v1
+              DATABASE_URL: '#{db.dbUrl}'
+              DATABASE_PORT: '#{db.dbPort}'
+              DATABASE_USERNAME: '#{db.dbUsername}'
+              DATABASE_PASSWORD: '#{db.dbPassword}'
+              DATABASE_NAME: '#{db.dbName}'
+          specifications:
+            cpu: 2
+            memory: 1
+            storage: 30
+        rid_2:
+          type: DATABASE
+          name: db
+          specifications:
+            cpu: 2
+            memory: 1
+            storage: 30
+            engine: postgres
+    production:
+      branch: main
+      codeReview: true
+      codeQuality: true
+      services:
+        rid_1:
+          type: WEB_SERVICE
+          name: web_service
+          entryPoint: index.js
+          properties:
+            health: /health
+            port: 8080
+            variables:
+              BASE_URL: /api/v1
+              DATABASE_URL: '#{db.dbUrl}'
+              DATABASE_PORT: '#{db.dbPort}'
+              DATABASE_USERNAME: '#{db.dbUsername}'
+              DATABASE_PASSWORD: '#{db.dbPassword}'
+              DATABASE_NAME: '#{db.dbName}'
+          specifications:
+            cpu: 2
+            memory: 1
             storage: 30
             autoScaling:
               replica:
                 min: 1
-                max: 3
-          properties:
-            health: /health
-            port: 8080
-            variables:
-              BASE_URL: /api/v1
-              DATABASE_URL: '#{db.dbUrl}'
-              DATABASE_PORT: '#{db.dbPort}'
-              DATABASE_USERNAME: '#{db.dbUsername}'
-              DATABASE_PASSWORD: '#{db.dbPassword}'
-              DATABASE_NAME: '#{db.dbName}'
+                max: 1
         rid_2:
-          name: db
           type: DATABASE
-          specifications:
-            engine: postgres
-            cpu: 2
-            memory: 4
-            storage: 20
-    staging:
-      branch: staging
-      services:
-        rid_1:
-          name: web-service
-          type: WEB_SERVICE
-          entryPoint: index.js
-          specifications:
-            cpu: 2
-            memory: 2
-            storage: 30
-          properties:
-            health: /health
-            port: 8080
-            variables:
-              BASE_URL: /api/v1
-              DATABASE_URL: '#{db.dbUrl}'
-              DATABASE_PORT: '#{db.dbPort}'
-              DATABASE_USERNAME: '#{db.dbUsername}'
-              DATABASE_PASSWORD: '#{db.dbPassword}'
-              DATABASE_NAME: '#{db.dbName}'
-              DATABASE_CONNECTION_STRING: '#{db.dbConnectionString}'
-        rid_2:
           name: db
-          type: DATABASE
           specifications:
-            engine: postgres
             cpu: 2
             memory: 1
-            storage: 20
-    qa:
-      branch: qa
-      services:
-        rid_1:
-          name: web-service
-          type: WEB_SERVICE
-          entryPoint: index.js
-          specifications:
-            cpu: 2
-            memory: 2
             storage: 30
-          properties:
-            health: /health
-            port: 8080
-            variables:
-              BASE_URL: /api/v1
-              DATABASE_URL: '#{db.dbUrl}'
-              DATABASE_PORT: '#{db.dbPort}'
-              DATABASE_USERNAME: '#{db.dbUsername}'
-              DATABASE_PASSWORD: '#{db.dbPassword}'
-              DATABASE_NAME: '#{db.dbName}'
-              DATABASE_CONNECTION_STRING: '#{db.dbConnectionString}'
-          insights:
-            cpu:
-              - cpu_time_idle
-              - cpu_time_system
-              - cpu_time_user
-            mem:
-              - mem_free
-              - mem_total
-            disk:
-              - disk_free
-            swap:
-              - swap_used
-        rid_2:
-          name: db
-          type: DATABASE
-          specifications:
             engine: postgres
-            cpu: 2
-            memory: 1
-            storage: 20
     preview:
+      codeReview: true
+      codeQuality: true
       services:
         rid_1:
-          name: web-service
           type: WEB_SERVICE
+          name: web_service
           entryPoint: index.js
-          specifications:
-            cpu: 2
-            memory: 2
-            storage: 30
           properties:
             health: /health
             port: 8080
@@ -128,12 +128,15 @@ revolte:
               DATABASE_USERNAME: '#{db.dbUsername}'
               DATABASE_PASSWORD: '#{db.dbPassword}'
               DATABASE_NAME: '#{db.dbName}'
-              DATABASE_CONNECTION_STRING: '#{db.dbConnectionString}'
-        rid_2:
-          name: db
-          type: DATABASE
           specifications:
-            engine: postgres
             cpu: 2
             memory: 1
-            storage: 20
+            storage: 30
+        rid_2:
+          type: DATABASE
+          name: db
+          specifications:
+            cpu: 2
+            memory: 1
+            storage: 30
+            engine: postgres
