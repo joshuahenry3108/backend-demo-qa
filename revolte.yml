@@ -14,7 +14,7 @@ revolte:
           javascript/constructorSuper: warn
   env:
     staging:
-      branch: main
+      branch: qatest
       codeReview: true
       codeQuality: true
       services:
@@ -76,7 +76,7 @@ revolte:
             storage: 30
             engine: postgres
     production:
-      branch: production
+      branch: qatest
       codeReview: true
       codeQuality: true
       services:
