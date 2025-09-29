@@ -1,7 +1,7 @@
 revolte:
   version: '1.0'
-  project: Untitled Project
-  appName: Test app 2
+  project: PAMS
+  appName: app-service
   config:
     codeReview:
       summarize: true
@@ -14,7 +14,7 @@ revolte:
           javascript/constructorSuper: warn
   env:
     staging:
-      branch: qatest
+      branch: main
       codeReview: true
       codeQuality: true
       services:
@@ -45,7 +45,7 @@ revolte:
             storage: 30
             engine: postgres
     qa:
-      branch: production
+      branch: qatest
       codeReview: true
       codeQuality: true
       services:
@@ -65,18 +65,18 @@ revolte:
               DATABASE_NAME: '#{db.dbName}'
           specifications:
             cpu: 2
-            memory: 1
+            memory: 2
             storage: 30
         rid_2:
           type: DATABASE
           name: db
           specifications:
             cpu: 2
-            memory: 1
+            memory: 2
             storage: 30
             engine: postgres
     production:
-      branch: main
+      branch: production
       codeReview: true
       codeQuality: true
       services:
