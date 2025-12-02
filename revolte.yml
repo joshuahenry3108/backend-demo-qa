@@ -11,38 +11,6 @@ revolte:
       command: npm run test
   env:
     staging:
-      branch: qatest
-      codeReview: false
-      testSuite: true
-      services:
-        rid_1:
-          type: WEB_SERVICE
-          name: web_service
-          entryPoint: app.js
-          properties:
-            health: /api/health
-            port: 3000
-            loadBalancerMode: shared
-            variables:
-              BASE_URL: /api/v1
-              DATABASE_URL: '#{db.dbUrl}'
-              DATABASE_PORT: '#{db.dbPort}'
-              DATABASE_USERNAME: '#{db.dbUsername}'
-              DATABASE_PASSWORD: '#{db.dbPassword}'
-              DATABASE_NAME: '#{db.dbName}'
-          specifications:
-            cpu: 2
-            memory: 1
-            storage: 30
-        rid_2:
-          type: DATABASE
-          name: dbname
-          specifications:
-            cpu: 2
-            memory: 8
-            storage: 30
-            engine: mysql
-    qa:
       branch: main
       codeReview: true
       testSuite: true
@@ -74,8 +42,40 @@ revolte:
             memory: 1
             storage: 30
             engine: postgres
+    qa:
+      branch: production
+      codeReview: true
+      testSuite: true
+      services:
+        rid_1:
+          type: WEB_SERVICE
+          name: web_service
+          entryPoint: index.js
+          properties:
+            health: /health
+            port: 8080
+            loadBalancerMode: dedicated
+            variables:
+              BASE_URL: /api/v1
+              DATABASE_URL: '#{db.dbUrl}'
+              DATABASE_PORT: '#{db.dbPort}'
+              DATABASE_USERNAME: '#{db.dbUsername}'
+              DATABASE_PASSWORD: '#{db.dbPassword}'
+              DATABASE_NAME: '#{db.dbName}'
+          specifications:
+            cpu: 2
+            memory: 1
+            storage: 30
+        rid_2:
+          type: DATABASE
+          name: db
+          specifications:
+            cpu: 2
+            memory: 1
+            storage: 30
+            engine: postgres
     production:
-      branch: qatest
+      branch: production
       codeReview: true
       testSuite: true
       services:
@@ -101,7 +101,7 @@ revolte:
             autoScaling:
               replica:
                 min: 1
-                max: 2
+                max: 1
         rid_2:
           type: DATABASE
           name: db
@@ -116,12 +116,12 @@ revolte:
       services:
         rid_1:
           type: WEB_SERVICE
-          name: web_service
-          entryPoint: index.js
+          name: web_services
+          entryPoint: app.js
           properties:
             health: /health
             port: 8080
-            loadBalancerMode: dedicated
+            loadBalancerMode: shared
             variables:
               BASE_URL: /api/v1
               DATABASE_URL: '#{db.dbUrl}'
@@ -129,6 +129,10 @@ revolte:
               DATABASE_USERNAME: '#{db.dbUsername}'
               DATABASE_PASSWORD: '#{db.dbPassword}'
               DATABASE_NAME: '#{db.dbName}'
+          insights:
+            cpu:
+              - cpu_time_idle
+              - cpu_time_system
           specifications:
             cpu: 2
             memory: 1
