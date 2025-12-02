@@ -1,128 +1,131 @@
 revolte:
   version: '1.0'
-  project: sample2021
-  appName: BE-test-for-multiple-nameapce
+  project: Untitled Project
+  appName: dsfdsf
+  config:
+    codeReview:
+      summarize: false
+      suggestFixes: false
+      commentStyle: Balanced
+    testSuite:
+      command: 'npm run test '
   env:
-    production:
-      branch: main
+    staging:
+      branch: production
+      codeReview: true
+      testSuite: true
       services:
         rid_1:
-          name: web-service
           type: WEB_SERVICE
+          name: web_service
           entryPoint: index.js
-          domain: api.revolte.com
+          properties:
+            health: /health
+            port: 8080
+            loadBalancerMode: dedicated
+            variables:
+              BASE_URL: /api/v1
+              ACCESS_KEY_ID: '#{storage_bucket_service.accessKeyId}'
+              SECRET_ACCESS_KEY_ID: '#{storage_bucket_service.secretAccessKeyId}'
+              REGION: '#{storage_bucket_service.region}'
           specifications:
             cpu: 2
-            memory: 2
+            memory: 1
+            storage: 30
+        rid_2:
+          type: STORAGE_BUCKET
+          name: storage_bucket_service
+          configurations:
+            bucketName: abc-hig-stag
+            versioningStatus: enabled
+            public: false
+    qa:
+      branch: qatest
+      codeReview: true
+      testSuite: true
+      services:
+        rid_1:
+          type: WEB_SERVICE
+          name: web_service
+          entryPoint: index.js
+          properties:
+            health: /health
+            port: 8080
+            loadBalancerMode: dedicated
+            variables:
+              BASE_URL: /api/v1
+              ACCESS_KEY_ID: '#{storage_bucket_service.accessKeyId}'
+              SECRET_ACCESS_KEY_ID: '#{storage_bucket_service.secretAccessKeyId}'
+              REGION: '#{storage_bucket_service.region}'
+          specifications:
+            cpu: 2
+            memory: 1
+            storage: 30
+        rid_2:
+          type: STORAGE_BUCKET
+          name: storage_bucket_service
+          configurations:
+            bucketName: abc-hig-qa
+            versioningStatus: enabled
+            public: false
+    production:
+      branch: main
+      codeReview: true
+      testSuite: true
+      services:
+        rid_1:
+          type: WEB_SERVICE
+          name: web_service
+          entryPoint: index.js
+          properties:
+            health: /health
+            port: 8080
+            loadBalancerMode: dedicated
+            variables:
+              BASE_URL: /api/v1
+              ACCESS_KEY_ID: '#{storage_bucket_service.accessKeyId}'
+              SECRET_ACCESS_KEY_ID: '#{storage_bucket_service.secretAccessKeyId}'
+              REGION: '#{storage_bucket_service.region}'
+          specifications:
+            cpu: 2
+            memory: 1
             storage: 30
             autoScaling:
               replica:
                 min: 1
-                max: 3
-          properties:
-            health: /health
-            port: 8080
-            variables:
-              BASE_URL: /api/v1
-              DATABASE_URL: '#{db.dbUrl}'
-              DATABASE_PORT: '#{db.dbPort}'
-              DATABASE_USERNAME: '#{db.dbUsername}'
-              DATABASE_PASSWORD: '#{db.dbPassword}'
-              DATABASE_NAME: '#{db.dbName}'
+                max: 2
         rid_2:
-          name: db
-          type: DATABASE
-          specifications:
-            cpu: 2
-            memory: 4
-            storage: 50
-            engine: postgres
-    staging:
-      branch: staging
-      services:
-        rid_1:
-          name: web-service
-          type: WEB_SERVICE
-          entryPoint: index.js
-          specifications:
-            cpu: 2
-            memory: 2
-            storage: 30
-          properties:
-            health: /health
-            port: 8080
-            variables:
-              BASE_URL: /api/v1
-              DATABASE_URL: '#{db.dbUrl}'
-              DATABASE_PORT: '#{db.dbPort}'
-              DATABASE_USERNAME: '#{db.dbUsername}'
-              DATABASE_PASSWORD: '#{db.dbPassword}'
-              DATABASE_NAME: '#{db.dbName}'
-              DATABASE_CONNECTION_STRING: '#{db.dbConnectionString}'
-        rid_2:
-          name: db
-          type: DATABASE
-          specifications:
-            cpu: 2
-            memory: 4
-            storage: 50
-            engine: postgres
-    qa:
-      branch: qa
-      services:
-        rid_1:
-          name: web-service
-          type: WEB_SERVICE
-          entryPoint: index.js
-          specifications:
-            cpu: 2
-            memory: 2
-            storage: 30
-          properties:
-            health: /health
-            port: 8080
-            variables:
-              BASE_URL: /api/v1
-              DATABASE_URL: '#{db.dbUrl}'
-              DATABASE_PORT: '#{db.dbPort}'
-              DATABASE_USERNAME: '#{db.dbUsername}'
-              DATABASE_PASSWORD: '#{db.dbPassword}'
-              DATABASE_NAME: '#{db.dbName}'
-              DATABASE_CONNECTION_STRING: '#{db.dbConnectionString}'
-        rid_2:
-          name: db
-          type: DATABASE
-          specifications:
-            cpu: 2
-            memory: 4
-            storage: 50
-            engine: postgres
+          type: STORAGE_BUCKET
+          name: storage_bucket_service
+          configurations:
+            bucketName: abc-hig-prod
+            versioningStatus: enabled
+            public: false
     preview:
+      codeReview: true
+      testSuite: true
       services:
         rid_1:
-          name: web-service
           type: WEB_SERVICE
+          name: web_service
           entryPoint: index.js
-          specifications:
-            cpu: 2
-            memory: 2
-            storage: 30
           properties:
             health: /health
             port: 8080
+            loadBalancerMode: dedicated
             variables:
               BASE_URL: /api/v1
-              DATABASE_URL: '#{db.dbUrl}'
-              DATABASE_PORT: '#{db.dbPort}'
-              DATABASE_USERNAME: '#{db.dbUsername}'
-              DATABASE_PASSWORD: '#{db.dbPassword}'
-              DATABASE_NAME: '#{db.dbName}'
-              DATABASE_CONNECTION_STRING: '#{db.dbConnectionString}'
-        rid_2:
-          name: db
-          type: DATABASE
+              ACCESS_KEY_ID: '#{storage_bucket_service.accessKeyId}'
+              SECRET_ACCESS_KEY_ID: '#{storage_bucket_service.secretAccessKeyId}'
+              REGION: '#{storage_bucket_service.region}'
           specifications:
             cpu: 2
-            memory: 4
-            storage: 50
-            engine: postgres
+            memory: 1
+            storage: 30
+        rid_2:
+          type: STORAGE_BUCKET
+          name: storage_bucket_service
+          configurations:
+            bucketName: abc-hig-prev
+            versioningStatus: enabled
+            public: false
