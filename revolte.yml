@@ -84,11 +84,11 @@ revolte:
             loadBalancerMode: dedicated
             variables:
               BASE_URL: /api/v1
-              DATABASE_URL: '#{dbase.dbaseUrl}'
-              DATABASE_PORT: '#{dbase.dbasePort}'
-              DATABASE_USERNAME: '#{dbase.dbaseUsername}'
-              DATABASE_PASSWORD: '#{dbase.dbasePassword}'
-              DATABASE_NAME: '#{dbase.dbaseName}'
+              DATABASE_URL: '#{dbase.dbUrl}'
+              DATABASE_PORT: '#{dbase.dbPort}'
+              DATABASE_USERNAME: '#{dbase.dbUsername}'
+              DATABASE_PASSWORD: '#{dbase.dbPassword}'
+              DATABASE_NAME: '#{dbase.dbName}'
           specifications:
             cpu: 2
             memory: 1
