@@ -7,13 +7,10 @@ revolte:
       summarize: true
       suggestFixes: true
       commentStyle: Balanced
-    testSuite:
-      command: npm run test
   env:
     staging:
       branch: main
       codeReview: false
-      testSuite: false
       services:
         rid_1:
           type: WEB_SERVICE
@@ -43,9 +40,8 @@ revolte:
             storage: 30
             engine: postgres
     qa:
-      branch: production
+      branch: qatest
       codeReview: false
-      testSuite: false
       services:
         rid_1:
           type: WEB_SERVICE
@@ -77,7 +73,6 @@ revolte:
     production:
       branch: production
       codeReview: false
-      testSuite: false
       services:
         rid_1:
           type: WEB_SERVICE
@@ -94,11 +89,6 @@ revolte:
               DATABASE_USERNAME: '#{db.dbUsername}'
               DATABASE_PASSWORD: '#{db.dbPassword}'
               DATABASE_NAME: '#{db.dbName}'
-          insights:
-            cpu:
-              - cpu_time_idle
-              - cpu_time_user
-              - cpu_time_system
           specifications:
             cpu: 2
             memory: 1
@@ -117,16 +107,15 @@ revolte:
             engine: postgres
     preview:
       codeReview: false
-      testSuite: false
       services:
         rid_1:
           type: WEB_SERVICE
-          name: web_services
-          entryPoint: app.js
+          name: web_service
+          entryPoint: index.js
           properties:
             health: /health
             port: 8080
-            loadBalancerMode: shared
+            loadBalancerMode: dedicated
             variables:
               BASE_URL: /api/v1
               DATABASE_URL: '#{db.dbUrl}'
@@ -134,10 +123,6 @@ revolte:
               DATABASE_USERNAME: '#{db.dbUsername}'
               DATABASE_PASSWORD: '#{db.dbPassword}'
               DATABASE_NAME: '#{db.dbName}'
-          insights:
-            cpu:
-              - cpu_time_idle
-              - cpu_time_system
           specifications:
             cpu: 2
             memory: 1
