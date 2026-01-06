@@ -1,16 +1,19 @@
 revolte:
   version: '1.0'
-  project: Untitled Project
-  appName: dsfdsf
+  project: Backend-Automation
+  appName: Backend-App-Automation
   config:
     codeReview:
       summarize: true
       suggestFixes: true
       commentStyle: Balanced
+    testSuite:
+      command: npm run test
   env:
     staging:
       branch: main
-      codeReview: false
+      codeReview: true
+      testSuite: true
       services:
         rid_1:
           type: WEB_SERVICE
@@ -41,7 +44,8 @@ revolte:
             engine: postgres
     qa:
       branch: main
-      codeReview: false
+      codeReview: true
+      testSuite: true
       services:
         rid_1:
           type: WEB_SERVICE
@@ -53,26 +57,27 @@ revolte:
             loadBalancerMode: dedicated
             variables:
               BASE_URL: /api/v1
-              DATABASE_URL: '#{dbase.dbUrl}'
-              DATABASE_PORT: '#{dbase.dbPort}'
-              DATABASE_USERNAME: '#{dbase.dbUsername}'
-              DATABASE_PASSWORD: '#{dbase.dbPassword}'
-              DATABASE_NAME: '#{dbase.dbName}'
+              DATABASE_URL: '#{db.dbUrl}'
+              DATABASE_PORT: '#{db.dbPort}'
+              DATABASE_USERNAME: '#{db.dbUsername}'
+              DATABASE_PASSWORD: '#{db.dbPassword}'
+              DATABASE_NAME: '#{db.dbName}'
           specifications:
             cpu: 2
             memory: 1
             storage: 30
         rid_2:
           type: DATABASE
-          name: dbase
+          name: db
           specifications:
             cpu: 2
             memory: 1
             storage: 30
             engine: postgres
     production:
-      branch: production
-      codeReview: false
+      branch: main
+      codeReview: true
+      testSuite: true
       services:
         rid_1:
           type: WEB_SERVICE
@@ -84,11 +89,11 @@ revolte:
             loadBalancerMode: dedicated
             variables:
               BASE_URL: /api/v1
-              DATABASE_URL: '#{dbase.dbUrl}'
-              DATABASE_PORT: '#{dbase.dbPort}'
-              DATABASE_USERNAME: '#{dbase.dbUsername}'
-              DATABASE_PASSWORD: '#{dbase.dbPassword}'
-              DATABASE_NAME: '#{dbase.dbName}'
+              DATABASE_URL: '#{db.dbUrl}'
+              DATABASE_PORT: '#{db.dbPort}'
+              DATABASE_USERNAME: '#{db.dbUsername}'
+              DATABASE_PASSWORD: '#{db.dbPassword}'
+              DATABASE_NAME: '#{db.dbName}'
           specifications:
             cpu: 2
             memory: 1
@@ -99,14 +104,15 @@ revolte:
                 max: 1
         rid_2:
           type: DATABASE
-          name: dbase
+          name: db
           specifications:
             cpu: 2
             memory: 1
             storage: 30
             engine: postgres
     preview:
-      codeReview: false
+      codeReview: true
+      testSuite: true
       services:
         rid_1:
           type: WEB_SERVICE
